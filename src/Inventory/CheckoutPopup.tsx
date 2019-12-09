@@ -71,17 +71,6 @@ export default function CheckoutPopup(props: {
             </Typography>}
           </DialogContentText>
           <List>
-            <ListItem key="date">
-              <TextField 
-                id="date"
-                label="Date:"
-                 />
-            </ListItem>
-
-            <ListItem key="employeeID">
-              <TextField
-                label="Employee ID:" />
-            </ListItem>
 
             <ListItem key="amount">
               <TextField 
