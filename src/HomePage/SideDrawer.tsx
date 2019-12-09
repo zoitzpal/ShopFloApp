@@ -32,7 +32,7 @@ import Projects from '../Production/Projects/Projects';
 
 
 
-const drawerWidth = 400; //240
+const drawerWidth = 160; 
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme: Theme) =>
       }),
     },
     menuButton: {
-      marginRight: 36,
+      marginRight: 5,
     },
     hide: {
       display: 'none',
@@ -94,13 +94,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
     content: {
       flexGrow: 1,
-      padding: theme.spacing(3),
+      padding: theme.spacing(1),
     },
     logOutButton: {
       marginBottom: '10px',
       textTransform: 'capitalize',
       color: 'white',
-      border: '1px solid white'
+      border: '2px solid white'
     }
   }),
 );
@@ -109,7 +109,7 @@ function SideDrawer(props: any) {
 
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const { userUIView, handleUserUIViewChange } = props
   const { logout } = useAuth0()
 
@@ -164,6 +164,7 @@ function SideDrawer(props: any) {
             alignItems="baseline"
           >
             <IconButton
+              style = {{paddingRight: '1px'}}
               color="inherit"
               aria-label="open drawer"
               onClick={handleDrawerOpen}
@@ -172,10 +173,10 @@ function SideDrawer(props: any) {
                 [classes.hide]: open,
               })}
             >
-              <Menu />
+              <Menu/>
             </IconButton>
 
-            <Typography style={{marginBottom: '10px', cursor: 'pointer'}} variant="h6" noWrap onClick={() => handleUserUIViewChange("Home")}>
+            <Typography style={{marginBottom: '10px', cursor: 'pointer'}} variant="h5" noWrap onClick={() => handleUserUIViewChange("Home")}>
               ShopFlo
             </Typography>
 
@@ -205,10 +206,11 @@ function SideDrawer(props: any) {
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? 
             <ChevronRight /> : <ChevronLeft />
-            }
+             }
           </IconButton>
         </div>
         <Divider />
+        
         <List>
           {['Inventory', 'Orders', 'Production'].map((text, index) => (
             <ListItem button onClick={() => onClickUpdateView(text)} key={text}>
