@@ -1,6 +1,6 @@
-import React, { forwardRef } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useEffect } from 'react';
 import MaterialTable, { Icons } from 'material-table';
+import { forwardRef } from 'react';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 import Check from '@material-ui/icons/Check';
@@ -16,10 +16,13 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import { Button, Dialog, DialogTitle, DialogContent, Typography, DialogActions, withStyles, IconButton, DialogContentText, TextField } from '@material-ui/core';
+import Beenhere from '@material-ui/icons/Beenhere';
+import ArrowBack from '@material-ui/icons/ArrowBack'
+import MaterialCheckoutPopup from './MaterialCheckoutPopup';
 
 
-
-export default function Orders() {
+export default function MaterialsList(props: any) {
   const tableIcons: Icons = {
     Add: forwardRef((props, ref: any) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref: any) => <Check {...props} ref={ref} />),
@@ -39,46 +42,91 @@ export default function Orders() {
     ThirdStateCheck: forwardRef((props, ref: any) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref: any) => <ViewColumn {...props} ref={ref} />)
   };
-  
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const {handleUserUIViewChange} = props;
   const [state, setState] = React.useState({
     columns: [
-      { title: 'Date', field: 'date'},
-      { title: 'PO Number', field: 'poNumber' },
-      { title: 'Job Number', field: 'jobNumber'},
-      { title: 'Part Number', field: 'partNumber'},
-      { title: 'Order Qty', field: 'orderQty'},
-      { title: 'Amount', field: 'amount'}
+      { title: 'Material Name', field: 'MaterialName' },
+      { title: 'Quanity of Material', field: 'qty' },
+      { title: 'Availability', field: 'availability', type: 'boolean' },
     ],
     data: [
-      { date: '06/23/2018', 
-        poNumber: 555475, 
-        jobNumber: '611167-B', 
-        partNumber: 6344166001, 
-        orderQty: 95,
-        amount: 323
-      }
+      { MaterialName: 'Steel', qty: 5, availabilty: true },
+      { MaterialName: 'Bronze', qty: 8, availabilty: true },
+      { MaterialName: 'Aluminum', qty: 2, availabilty: true },
+      { MaterialName: 'Iron', qty: 0, availabilty: false }
+
     ],
   });
+
+  const [open, setOpen] = React.useState(false);
+  const [MaterialName, setMaterialName] = React.useState('')
+  const [qty, setQty] = React.useState(0)
+
+  const handleClickOpen = (open: boolean) => {
+    setOpen(open);
+  };
+
+  const updateQty = (qty: number) => {
+    setQty(qty)
+  }
+
+  const updateDataInput = (newData: {
+    MaterialName: string;
+    qty: number;
+    availabilty: boolean;
+    }, oldData: any) =>
+    new Promise(resolve => {
+      setTimeout(() => {
+        resolve();
+        setQty(oldData.qty)
+        console.log(qty)
+        const data = [...state.data];
+        console.log(data[data.indexOf(oldData)])
+        // setState({ ...state, data });
+      }, 600);
+    })
+
 
 
   return (
     <div>
+      <Button onClick={() => handleUserUIViewChange('Inventory')}>
+        <ArrowBack /> Inventory Lists
+      </Button>
       <MaterialTable
         icons={tableIcons}
-        title="Tools List"
+        title="Materials List"
         columns={[
-          { title: 'Date', field: 'date'},
-          { title: 'PO Number', field: 'poNumber' },
-          { title: 'Job Number', field: 'jobNumber'},
-          { title: 'Part Number', field: 'partNumber'},
-          { title: 'Order Qty', field: 'orderQty'},
-          { title: 'Amount', field: 'amount'}
+          { title: 'Material Name', field: 'MaterialName' },
+          { title: 'Quantity of Material', field: 'qty' },
+          { title: 'Availability', field: 'availabilty', type: 'boolean' }
         ]}
         data={state.data}
+        actions={[
+          {
+            icon: () => <Beenhere />,
+            Materialtip: 'Check out Material',
+            onClick: (newData: any, oldData: any) => {
+              setQty(oldData.qty)
+              new Promise(resolve => {
+                setTimeout(() => {
+                  resolve();
+                  handleClickOpen(true);
+                  updateDataInput(newData, oldData);
+
+                }, 600);
+              })
+
+            }
+          }
+        ]}
         editable={{
-          onRowAdd: (newData: any) =>
+          onRowAdd: (newData: {
+            MaterialName: string;
+            qty: number;
+            availabilty: boolean;
+          }) =>
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
@@ -87,7 +135,11 @@ export default function Orders() {
                 setState({ ...state, data });
               }, 600);
             }),
-          onRowUpdate: (newData: any, oldData: any) =>
+          onRowUpdate: (newData: {
+            MaterialName: string;
+            qty: number;
+            availabilty: boolean;
+          }, oldData: any) =>
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
@@ -108,9 +160,14 @@ export default function Orders() {
         }}
       />
 
+    <MaterialCheckoutPopup
+      handleClickOpen={handleClickOpen}
+      open={open}
+      MaterialName={MaterialName}
+      updateQty={updateQty}
+      qty={qty}
+    />
+
     </div>
-
-
-
   );
 }

@@ -18,7 +18,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import { Button, Dialog, DialogTitle, DialogContent, Typography, DialogActions, withStyles, IconButton, DialogContentText, TextField } from '@material-ui/core';
 import Beenhere from '@material-ui/icons/Beenhere';
-import ArrowBack from '@material-ui/icons/ArrowBack';
+import ArrowBack from '@material-ui/icons/ArrowBack'
 import CheckoutPopup from './CheckoutPopup';
 
 

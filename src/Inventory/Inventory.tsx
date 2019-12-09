@@ -8,24 +8,23 @@ const useStyles = makeStyles((theme: Theme) =>
             flexGrow: 1,
         },
         paper: {
-            height: 400,
-            width: 700,
+            height: 200,
+            width: 400,
         },
         control: {
-            padding: theme.spacing(4),
+            padding: theme.spacing(2),
         },
         gridInBetweenSpacing: {
-            marginTop: 50,
+            marginTop: 40,
         },
         card: {
             // maxWidth: 345,
-            width: 450,
+            width: 340
           },
         media: {
-            height: 200,
-            width: 700,
+            height: 140,
           },
-        
+
     }),
 );
 
@@ -57,7 +56,7 @@ export default function Inventory(props: any) {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary" fullWidth onClick={() => handleOnClick('ToolsList')}> 
+                <Button size="small" color="primary" fullWidth onClick={() => handleOnClick('ToolsList')}>
                   View More
                 </Button>
               </CardActions>
@@ -66,7 +65,7 @@ export default function Inventory(props: any) {
 
           <Grid key={"Materials"} item>
             <Card className={classes.card}>
-              <CardActionArea>
+              <CardActionArea onClick={() => handleOnClick('MaterialsList')}>
                 <CardMedia
                   className={classes.media}
                   image={"https://software-dev-proj.s3-us-west-1.amazonaws.com/Inventory.jpg"}
@@ -78,7 +77,7 @@ export default function Inventory(props: any) {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary" fullWidth>
+                <Button size="small" color="primary" fullWidth onClick={() => handleOnClick('MaterialsList')}>
                   View More
                 </Button>
               </CardActions>

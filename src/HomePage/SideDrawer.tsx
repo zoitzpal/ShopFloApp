@@ -29,10 +29,10 @@ import Production from '../Production/Production';
 import { useFormControl } from '@material-ui/core/FormControl';
 import ToolsList from '../Inventory/ToolsList';
 import Projects from '../Production/Projects/Projects';
+import MaterialsList from '../Inventory/MaterialsList';
 
 
-
-const drawerWidth = 400; //240
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -85,13 +85,12 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     toolbar: {
-      display: 'row-reverse', //flex
+      display: 'flex',
       alignItems: 'center',
       justifyContent: 'flex-end',
       padding: theme.spacing(0, 1),
       ...theme.mixins.toolbar,
     },
-
     content: {
       flexGrow: 1,
       padding: theme.spacing(3),
@@ -140,6 +139,9 @@ function SideDrawer(props: any) {
     }
     else if(userUIView === 'ToolsList'){
       return <ToolsList handleUserUIViewChange={handleUserUIViewChange} />
+    }
+    else if(userUIView === 'MaterialsList'){
+      return <MaterialsList handleUserUIViewChange={handleUserUIViewChange} />
     }
     else if(userUIView === 'Projects'){
       return <Projects handleUserUIViewChange={handleUserUIViewChange} />

@@ -7,22 +7,21 @@ const useStyles = makeStyles((theme: Theme) =>
             flexGrow: 1,
         },
         paper: {
-            height: 400,
-            width: 700,
+            height: 200,
+            width: 400,
         },
         control: {
-            padding: theme.spacing(4),
+            padding: theme.spacing(2),
         },
         gridInBetweenSpacing: {
-            marginTop: 50,
+            marginTop: 40,
         },
         card: {
             // maxWidth: 345,
-            width: 450
+            width: 340
           },
         media: {
-            height: 200,
-            width: 700,
+            height: 140,
           },
         
     }),

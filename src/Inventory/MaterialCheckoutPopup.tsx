@@ -27,10 +27,10 @@ const styles = (theme: Theme) =>
     },
   });
 
-export default function CheckoutPopup(props: {
+export default function MaterialCheckoutPopup(props: {
   handleClickOpen: any,
   open: boolean,
-  toolName: string,
+  MaterialName: string,
   updateQty: any,
   qty: number
 }) {
@@ -50,7 +50,7 @@ export default function CheckoutPopup(props: {
       var newQty = (qty - e.target.value)
       setUpdatedQty(newQty)
       console.log(updatedQty)
-    } 
+    }
 
   }
 
@@ -72,7 +72,7 @@ export default function CheckoutPopup(props: {
           </DialogContentText>
           <List>
             <ListItem key="date">
-              <TextField 
+              <TextField
                 id="date"
                 label="Date:"
                  />
@@ -84,7 +84,7 @@ export default function CheckoutPopup(props: {
             </ListItem>
 
             <ListItem key="amount">
-              <TextField 
+              <TextField
                 label="Amount checking out:"
                 onChange={(e) => handleCheckingOut(e)}
                 />

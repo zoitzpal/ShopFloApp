@@ -7,21 +7,20 @@ const useStyles = makeStyles((theme: Theme) =>
             flexGrow: 1,
         },
         paper: {
-            height: 400,
-            width: 700,
+            height: 200,
+            width: 400,
         },
         control: {
-            padding: theme.spacing(4),
+            padding: theme.spacing(2),
         },
         gridInBetweenSpacing: {
-            marginTop: 50,
+            marginTop: 40,
         },
         card: {
-            maxWidth: 450, 
+            maxWidth: 345,
           },
         media: {
-            height: 200,
-            width: 700,
+            height: 140,
           },
         
     }),
@@ -49,12 +48,12 @@ export default function SelectUIView(props: any) {
                                             Inventory
                                         </Typography>
                                         <Typography variant="body2" color="textSecondary" component="p">
-                                            current inventory, supplies, and equipment.
+                                            See more information about your current inventory, supplies, and equipment.
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions>
-                                    <Button size="large" color="primary" fullWidth onClick={() => handleUserUIViewChange("Inventory")}>
+                                    <Button size="small" color="primary" fullWidth onClick={() => handleUserUIViewChange("Inventory")}>
                                         View More
                                     </Button>
                                 </CardActions>
@@ -78,7 +77,7 @@ export default function SelectUIView(props: any) {
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions>
-                                    <Button size="large" color="primary" fullWidth onClick={() => handleUserUIViewChange("Orders")}>
+                                    <Button size="small" color="primary" fullWidth onClick={() => handleUserUIViewChange("Orders")}>
                                         View More
                                     </Button>
                                 </CardActions>
@@ -102,7 +101,7 @@ export default function SelectUIView(props: any) {
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions>
-                                    <Button size="large" color="primary" fullWidth onClick={() => handleUserUIViewChange("Production")}>
+                                    <Button size="small" color="primary" fullWidth onClick={() => handleUserUIViewChange("Production")}>
                                         View More
                                     </Button>
                                 </CardActions>
