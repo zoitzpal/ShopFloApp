@@ -29,6 +29,7 @@ import Production from '../Production/Production';
 import { useFormControl } from '@material-ui/core/FormControl';
 import ToolsList from '../Inventory/ToolsList';
 import Projects from '../Production/Projects/Projects';
+import MaterialsList from '../Inventory/Materials';
 
 
 
@@ -140,6 +141,9 @@ function SideDrawer(props: any) {
     }
     else if(userUIView === 'ToolsList'){
       return <ToolsList handleUserUIViewChange={handleUserUIViewChange} />
+    }
+    else if(userUIView === 'MaterialsList'){
+      return <MaterialsList handleUserUIViewChange={handleUserUIViewChange} />
     }
     else if(userUIView === 'Projects'){
       return <Projects handleUserUIViewChange={handleUserUIViewChange} />
